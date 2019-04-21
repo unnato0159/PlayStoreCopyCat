@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.tje.playstorecopycat.adapters.AppAdapter;
 import com.tje.playstorecopycat.databinding.ActivityMainBinding;
 import com.tje.playstorecopycat.datas.App;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    AppAdapter mAppAdapter;
 
     List<App> appList = new ArrayList<>();
 
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         act = DataBindingUtil.setContentView(this,R.layout.activity_main);
         fillApps();
 
+        mAppAdapter = new AppAdapter(MainActivity.this,appList);
+        act.appRankListView.setAdapter(mAppAdapter);
     }
 
     void fillApps() {
