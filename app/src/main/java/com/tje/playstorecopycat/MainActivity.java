@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, String.format("%d번 줄 클릭",position), Toast.LENGTH_SHORT).show();
-                return false;
+                return true;
             }
-        }
+        });
 
 
     }
