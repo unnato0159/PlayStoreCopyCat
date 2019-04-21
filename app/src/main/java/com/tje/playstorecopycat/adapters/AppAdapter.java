@@ -33,6 +33,7 @@ public class AppAdapter extends ArrayAdapter<App> {
         if(row == null){
             row = inf.inflate(R.layout.app_list_item, null);
         }
+           // 실질적으로 상황에 맞게 머리르 써야하는 부분,
 
         return row;
     }
