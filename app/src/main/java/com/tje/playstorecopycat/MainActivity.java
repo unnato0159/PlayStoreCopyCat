@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         act = DataBindingUtil.setContentView(this,R.layout.activity_main);
         fillApps();
+
     }
 
     void fillApps() {
