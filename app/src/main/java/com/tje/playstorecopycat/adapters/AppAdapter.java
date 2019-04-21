@@ -38,7 +38,7 @@ public class AppAdapter extends ArrayAdapter<App> {
         // 각줄에 맞는 앱 데이터를  mList에서 추출
         App appData = mList.get(position);
 
-        TextView rankAndTitleTxt =row.findViewById(R.id.appRankListView);
+        TextView rankAndTitleTxt =row.findViewById(R.id.rankAndTitleTxt);
         TextView companyNameTxt= row.findViewById(R.id.companyNameTxt);
         TextView priceOrInstalledTxt = row.findViewById(R.id.priceOrInstalledTxt);
 
@@ -50,8 +50,12 @@ public class AppAdapter extends ArrayAdapter<App> {
         //안되었다면? 가겨을 띄워줌, 3.000 원의 양식
 
         if(appData.isMine){
-            // 내가 설치한 항목일 경우 설치한 항목 글자를 그대로 표시
-            // 실제 코딩은 하지 않았음 .
+            // 내가 설치한 항목일 경우 반드시 설치된 항목이라고 띄우도록 명령,
+            // 재사용성 때문에 원하지 않는 데이터가 나올 수 있음
+            priceOrInstalledTxt.setText("설치된 항목");
+
+
+
         }else{
             // 설치하지 않은 경우
             //String.format 의 %.d 를 이용해 세자리마다 컴마 찍음 ,
