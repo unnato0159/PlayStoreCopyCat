@@ -9,7 +9,7 @@ public class App {
     public int price; //  구매 가격
     public boolean isMine; //  내가 구매했는지 ? True : 설치된 항목 False : 가격표시
 
-    //Alt + insert -> Construcor
+    //Alt + insert -> Constructor
 
 
     public App(int rank, String title, String companyName, int userRating, int price, boolean isMine) {
