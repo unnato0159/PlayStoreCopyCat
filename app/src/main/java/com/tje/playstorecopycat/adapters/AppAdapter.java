@@ -42,6 +42,23 @@ public class AppAdapter extends ArrayAdapter<App> {
         TextView companyNameTxt= row.findViewById(R.id.companyNameTxt);
         TextView priceOrInstalledTxt = row.findViewById(R.id.priceOrInstalledTxt);
 
+        // 등수와 제목을 셋팅
+        rankAndTitleTxt.setText(String.format("%d. %s",appData.rank,appData.title));
+        //회사 이름은 가진 그대로 대입
+        companyNameTxt.setText(appData.companyName);
+        //만약 설치가 되었다면? 설치된 항목
+        //안되었다면? 가겨을 띄워줌, 3.000 원의 양식
+
+        if(appData.isMine){
+            // 내가 설치한 항목일 경우 설치한 항목 글자를 그대로 표시
+            // 실제 코딩은 하지 않았음 .
+        }else{
+            // 설치하지 않은 경우
+            //String.format 의 %.d 를 이용해 세자리마다 컴마 찍음 ,
+            priceOrInstalledTxt.setText(String.format("%,d원",appData.price));
+        }
+
+
 
 
         return row;
