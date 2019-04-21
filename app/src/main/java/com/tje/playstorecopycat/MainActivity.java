@@ -3,6 +3,8 @@ package com.tje.playstorecopycat;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.tje.playstorecopycat.adapters.AppAdapter;
 import com.tje.playstorecopycat.databinding.ActivityMainBinding;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     List<App> appList = new ArrayList<>();
 
     ActivityMainBinding act;
-
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         mAppAdapter = new AppAdapter(MainActivity.this,appList);
         act.appRankListView.setAdapter(mAppAdapter);
+        act.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "확인 버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        // Q1  확인버튼이 눌리면 확인 버튼을 눌렀습니다. 라는 토스트를 띄워봅시다.
     }
 
     void fillApps() {

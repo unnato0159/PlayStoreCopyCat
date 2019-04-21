@@ -16,6 +16,11 @@
             android:gravity="center"
             android:text="플레이스토어 게임 순위"/>
 
+          <Button
+              android:id="@+id/button"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+
         <ListView
             android:id="@+id/appRankListView"
             android:layout_width="match_parent"
