@@ -36,7 +36,15 @@ public class MainActivity extends AppCompatActivity {
         act.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "확인 버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this, "확인 버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+
+                appList.add(new App(1,"임시게임","미상",5,3000,true));
+                mAppAdapter.notifyDataSetChanged();
+
+                //Ex , f리스트 앱이 6개 : 마지막꺼는 몇번 ?5
+
+
+                act.appRankListView.smoothScrollToPosition(appList.size()-1);
             }
         });
 
@@ -59,7 +67,13 @@ public class MainActivity extends AppCompatActivity {
         act.appRankListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, String.format("%d번 줄 클릭",position), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this, String.format("%d번 줄 클릭",position), Toast.LENGTH_SHORT).show();
+
+
+                appList.remove(position);
+
+                mAppAdapter.notifyDataSetChanged();
+
                 return true;
             }
         });
@@ -71,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         appList.add(new App(1,"아스팔트 8: 에어본","GameLoft",5,6000,true));
         appList.add(new App(2,"MineCraft - Pocket Edition","Mojang",4,1000,true));
-        appList.add(new App(1,"아스팔트 7 : 하트","GameLoft",2,3000,false));
-        appList.add(new App(1,"팔라독(Paladog)","FazeCat",3,2000,false));
-        appList.add(new App(1,"Plants Vs . Zombies","EA Swiss Sarl",1,4000,false));
-        appList.add(new App(1,"스왐피(Swampy)","Dizney",4,7000,false));
+        appList.add(new App(3,"아스팔트 7 : 하트","GameLoft",2,3000,false));
+        appList.add(new App(4,"팔라독(Paladog)","FazeCat",3,2000,false));
+        appList.add(new App(5,"Plants Vs . Zombies","EA Swiss Sarl",1,4000,false));
+        appList.add(new App(6,"스왐피(Swampy)","Dizney",4,7000,false));
     }
 }
