@@ -1,5 +1,6 @@
 package com.tje.playstorecopycat;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 
 import com.tje.playstorecopycat.databinding.ActivityAppDetailBinding;
 import com.tje.playstorecopycat.databinding.ActivityMainBinding;
@@ -60,6 +62,13 @@ public class AppDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("텍스트뷰","실제로 동작하나");
+                DatePickerDialog dpd = new DatePickerDialog(AppDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                    }
+                },2019,4,27);
+                dpd.show();
             }
         });
 
