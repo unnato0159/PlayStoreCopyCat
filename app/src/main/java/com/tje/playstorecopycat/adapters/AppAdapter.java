@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tje.playstorecopycat.R;
 import com.tje.playstorecopycat.datas.App;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppAdapter extends ArrayAdapter<App> {
@@ -43,6 +45,39 @@ public class AppAdapter extends ArrayAdapter<App> {
         TextView rankAndTitleTxt =row.findViewById(R.id.rankAndTitleTxt);
         TextView companyNameTxt= row.findViewById(R.id.companyNameTxt);
         TextView priceOrInstalledTxt = row.findViewById(R.id.priceOrInstalledTxt);
+
+        ImageView  star1 = row.findViewById(R.id.star1);
+        ImageView  star2 = row.findViewById(R.id.star2);
+        ImageView  star3 = row.findViewById(R.id.star3);
+        ImageView  star4 = row.findViewById(R.id.star4);
+        ImageView  star5 = row.findViewById(R.id.star5);
+
+        List<ImageView> stars = new ArrayList<>();
+        stars.add(star1);
+        stars.add(star2);
+        stars.add(star3);
+        stars.add(star4);
+        stars.add(star5);
+
+        //리스트뷰 재사용성때문에 데이터가 잘못 나올수 있음
+        // 항상 초기 상태로 돌려주는 작업 필요
+        for(ImageView star : stars){
+            star.setImageResource(R.drawable.star_empty);
+        }
+
+        for(int i = 0 ; i<appData.userRating; i++){
+            stars.get(i).setImageResource(R.drawable.star_fill);
+        }
+
+      /*  if(appData.userRating == 1){
+            star1.setImageResource(R.drawable.star_fill);
+            star2.setImageResource(R.drawable.star_empty);
+            star3.setImageResource(R.drawable.star_empty);
+            star4.setImageResource(R.drawable.star_empty);
+            star5.setImageResource(R.drawable.star_empty);
+
+        }
+*/
 
         // 등수와 제목을 셋팅
         rankAndTitleTxt.setText(String.format("%d. %s",appData.rank,appData.title));
