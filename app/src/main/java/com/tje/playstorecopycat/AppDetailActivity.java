@@ -15,6 +15,7 @@ import com.tje.playstorecopycat.databinding.ActivityAppDetailBinding;
 import com.tje.playstorecopycat.databinding.ActivityMainBinding;
 import com.tje.playstorecopycat.datas.App;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AppDetailActivity extends AppCompatActivity {
@@ -78,11 +79,22 @@ public class AppDetailActivity extends AppCompatActivity {
                         cal.set(year,month,dayOfMonth);
                         // 같은 메소드인데 ,  arg 의 종류/갯수에 따라 다른 행동을함.  = > overLoading 의 예시
 
+                        // cal 에 저장된 값을 string으로(양식에 맞게) 바꿔서Textview 로 세팅.
+                        // 날짜를 양식으로 바꾸고 싶을때  : simpleDateformat
+
+                        // 어떤 양식으로 문자를 출력할지 지정. 양식을 지정
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 M월 d일");
+                        // 지정된 양식으로 Calendar 변수를 String으로 변환 .
+
+                        String dateStr  = sdf.format(cal.getTimeInMillis());
+                        // 만들어진 String을 화면에 출력
+                        act.dataTxt.setText(dateStr);
 
 
 
                     }
-                },2019,4,27);
+                },2019,3,27);
                 dpd.show();
             }
         });
