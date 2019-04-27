@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.tje.playstorecopycat.databinding.ActivityAppDetailBinding;
 import com.tje.playstorecopycat.databinding.ActivityMainBinding;
 import com.tje.playstorecopycat.datas.App;
+
+import java.util.Calendar;
 
 public class AppDetailActivity extends AppCompatActivity {
 
@@ -65,6 +68,18 @@ public class AppDetailActivity extends AppCompatActivity {
                 DatePickerDialog dpd = new DatePickerDialog(AppDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        //Toast.makeText(AppDetailActivity.this,  String.format("%d년 %d 월 %d 일",year,month,dayOfMonth), Toast.LENGTH_SHORT).show();
+                        Calendar cal = Calendar.getInstance(); // new Calendar 라고 만들지 않는다. 싱글턴 패턴의 일종,
+                        //  항목별로 어떤값을 갖게 할건지? 코딩 방식
+                        cal.set(Calendar.YEAR,year);
+                        cal.set(Calendar.MONTH,month);
+                        cal.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        // 2  년/월/일 한꺼번에 세팅 .
+                        cal.set(year,month,dayOfMonth);
+                        // 같은 메소드인데 ,  arg 의 종류/갯수에 따라 다른 행동을함.  = > overLoading 의 예시
+
+
+
 
                     }
                 },2019,4,27);
