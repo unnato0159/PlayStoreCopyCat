@@ -59,48 +59,46 @@ public class AppDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Uri phoneUri = Uri.parse("tel:019-9876-5432");
-                Intent intent = new Intent(Intent.ACTION_DIAL, phoneUri);
+                Intent intent = new Intent(Intent.ACTION_CALL, phoneUri);
                 startActivity(intent);
 
             }
         });
 
-        act.dataTxt.setOnClickListener(new View.OnClickListener() {
+        act.smsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("텍스트뷰","실제로 동작하나");
-                DatePickerDialog dpd = new DatePickerDialog(AppDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        //Toast.makeText(AppDetailActivity.this,  String.format("%d년 %d 월 %d 일",year,month,dayOfMonth), Toast.LENGTH_SHORT).show();
-                        Calendar cal = Calendar.getInstance(); // new Calendar 라고 만들지 않는다. 싱글턴 패턴의 일종,
-                        //  항목별로 어떤값을 갖게 할건지? 코딩 방식
-                        cal.set(Calendar.YEAR,year);
-                        cal.set(Calendar.MONTH,month);
-                        cal.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                        // 2  년/월/일 한꺼번에 세팅 .
-                        cal.set(year,month,dayOfMonth);
-                        // 같은 메소드인데 ,  arg 의 종류/갯수에 따라 다른 행동을함.  = > overLoading 의 예시
-
-                        // cal 에 저장된 값을 string으로(양식에 맞게) 바꿔서Textview 로 세팅.
-                        // 날짜를 양식으로 바꾸고 싶을때  : simpleDateformat
-
-                        // 어떤 양식으로 문자를 출력할지 지정. 양식을 지정
-
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 M월 d일");
-                        // 지정된 양식으로 Calendar 변수를 String으로 변환 .
-
-                        String dateStr  = sdf.format(cal.getTimeInMillis());
-                        // 만들어진 String을 화면에 출력
-                        act.dataTxt.setText(dateStr);
-
-
-
-                    }
-                },2019,3,27);
-                dpd.show();
+                Uri smsUri = Uri.parse("smsto:01012345678");
+                Intent intent = new Intent(Intent.ACTION_SENDTO,smsUri);
+                intent.putExtra("sms_body","미리작성된 메세지 ");
+                startActivity(intent);
             }
         });
+
+
+
+       act.dataTxt.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               DatePickerDialog dpd = new DatePickerDialog(AppDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                   @Override
+                   public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                       Calendar cal = Calendar.getInstance();
+
+                       cal.set(year,month,dayOfMonth);
+
+                       SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+
+                       String dataStr = sdf.format(cal.getTimeInMillis());
+
+                       act.dataTxt.setText(dataStr);
+
+
+                   }
+               },2019,3,27);
+               dpd.show();
+           }
+       });
 
         act.timeTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,16 +106,16 @@ public class AppDetailActivity extends AppCompatActivity {
                 TimePickerDialog tpd = new TimePickerDialog(AppDetailActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
                         Calendar cal = Calendar.getInstance();
+
                         cal.set(Calendar.HOUR_OF_DAY,hourOfDay);
                         cal.set(Calendar.MINUTE,minute);
 
-                        SimpleDateFormat sdp = new SimpleDateFormat("a h시 m분", Locale.KOREA);
+                        SimpleDateFormat sdf = new SimpleDateFormat("a H시 m 분",Locale.KOREA);
 
-                        String timestr= sdp.format(cal.getTimeInMillis());
+                        String timesdf= sdf.format(cal.getTimeInMillis());
 
-                        act.timeTxt.setText(timestr);
+                        act.timeTxt.setText(timesdf);
 
                     }
                 },15,15,true);
