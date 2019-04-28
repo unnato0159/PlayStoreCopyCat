@@ -27,7 +27,7 @@ public class FilterActivity extends AppCompatActivity {
               //돌아가는 Intent는 new Intent() 안에 아무것도 넣지 않음
               Intent resultIntent = new Intent();
               // 결과 인텐트에 입력한 최소 평점을 첨부
-              resultIntent.putExtra("최소평정",minRating);
+              resultIntent.putExtra("최소평점",minRating);
               //finish  하기전에 결과를 설정.
                 setResult(RESULT_OK,resultIntent);
                 //모든 설정이 끝났으니 이 화면을 닫는다.

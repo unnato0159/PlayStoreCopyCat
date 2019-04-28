@@ -3,9 +3,11 @@ package com.tje.playstorecopycat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    static   int REQ_FOR_FILTER = 150;
 
     AppAdapter mAppAdapter;
 
@@ -111,9 +114,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,FilterActivity.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent,REQ_FOR_FILTER);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("액티비티 결과","결과가 돌아옴!");
+        Log.d("리퀘스트 코드 ", requestCode+"");
+        Log.d("리절트 코드",resultCode+"");
+        
+        if(requestCode == REQ_FOR_FILTER) {
+            //필터를 설정하러 갔다 돌아온게 맞다! 
+            if( resultCode == RESULT_OK){
+                //확인버튼이 눌린게 맞다.
+               // Toast.makeText(this, "필터가 설정되었습니다.", Toast.LENGTH_SHORT).show();
+                int filteredRating = data.getIntExtra("최소평점",0);
+                act.filterRatingTxt.setText(String.format("(현재 필터:%d점)",filteredRating));
+            }
+            else{
+                 //확인 아니고, 취소되었다. 
+                Toast.makeText(this, "필터 설정을 취소 했습니다.", Toast.LENGTH_SHORT).show();
+                
+            }
+        }
     }
 
     void fillApps() {
