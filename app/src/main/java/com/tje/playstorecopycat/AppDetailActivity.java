@@ -94,6 +94,7 @@ public class AppDetailActivity extends AppCompatActivity {
 
 
 
+
        act.dataTxt.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
